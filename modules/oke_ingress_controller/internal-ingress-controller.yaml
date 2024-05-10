@@ -1,0 +1,44 @@
+controller:  
+  ingressClass: nginx-int-ingress-ctrl-1
+  ingressClassResource:
+    name: nginx-int-ingress-ctrl-1
+    enabled: true
+    default: false
+    controllerValue: k8s.io/nginx-int-ingress-ctrl-1
+  ingressClassByName: true
+  
+  service:
+    enabled: true
+    type: LoadBalancer    
+    annotations:
+      oci.oraclecloud.com/load-balancer-type: "lb"
+      service.beta.kubernetes.io/oci-load-balancer-internal: "true"      
+      service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "512"
+      service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1.sa-saopaulo-1....."
+
+  metrics:
+    serviceMonitor:
+      enabled: true
+      additionalLabels: release="prometheus"
+
+  kind: Deployment
+
+  autoscaling:
+    apiVersion: autoscaling/v2
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 70
+
+  config:
+    allow-snippet-annotations: "true"
+    client-header-buffer-size: 128k
+    http2-max-field-size: 32k
+    http2-max-header-size: 256k
+    large-client-header-buffers: 8 256k
+    proxy-buffer-size: 512k
+    proxy-buffers: 8 512k
+    proxy-busy-buffers-size: 512k
