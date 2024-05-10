@@ -3,12 +3,18 @@ Repositório com código de exemplo para deploy do OKE.
 
 Estrutura: 
 
-oci-oke-01
+oci-custom-oke
+
 ├── .kube ### Diretório de config do kubectl.
+
 │   └── config ### Arquivo com o config que é gerado para o terraform conectar ao cluster.
+
 ├── backend.tf ### Local do tfstate.
+
 ├── main.tf ### Definição de providers e modulos.
+
 ├── modules ### Diretório com os módulos.
+
 │   ├── oke ### Modulo que cria o OKE (Cluster e Node Pool).
 │   │   ├── bootstrap ### Script de inicialização. Expande o boot volume.
 │   │   ├── data.tf ### Arquivo com datasources.
