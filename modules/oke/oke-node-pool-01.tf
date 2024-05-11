@@ -26,7 +26,7 @@ resource "oci_containerengine_node_pool" "oke_node_pool_01" {
   node_config_details {
     placement_configs {
       availability_domain = data.oci_identity_availability_domains.availability_domains.availability_domains[0].name ## Datasource com o ID do AD disponível no tenancy e região. 
-      subnet_id           = var.subnet_private_id ## ID da subnet que será utilizada. Recomendado o uso de subnet privada.
+      subnet_id           = var.subnet_workers_private_id ## ID da subnet que será utilizada. Recomendado o uso de subnet privada.
     }
     size = 1 ## Quantidade de nós no node pool.
   }

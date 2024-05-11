@@ -10,8 +10,8 @@ resource "oci_containerengine_cluster" "oke_cluster_01" {
   }
 
   endpoint_config {
-    is_public_ip_enabled = true                 ## Se configurado como True, o seu endpoint de gerenciamento do Cluster recebe um IP público.
-    subnet_id            = var.subnet_public_id ## ID da subnet que será utilizada. Recomendado o uso de subnet privada para ambientes de produção.
+    is_public_ip_enabled = false                 ## Se configurado como True, o seu endpoint de gerenciamento do Cluster recebe um IP público.
+    subnet_id            = var.subnet_api_private_id ## ID da subnet que será utilizada. Recomendado o uso de subnet privada para ambientes de produção.
   }
 
   ## Tags para o cluster.
@@ -40,7 +40,7 @@ resource "oci_containerengine_cluster" "oke_cluster_01" {
       services_cidr = "172.29.0.0/16" ## Range de IP reservado para services.
     }
 
-    service_lb_subnet_ids = [var.subnet_public_id] ## ID da subnet que será utilizada. Pode ser informado mais de uma subnet, publica ou privada. 
+    service_lb_subnet_ids = [var.subnet_lb_public_id] ## ID da subnet que será utilizada. Pode ser informado mais de uma subnet, publica ou privada. 
   }
 }
 

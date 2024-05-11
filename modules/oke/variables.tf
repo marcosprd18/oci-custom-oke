@@ -14,10 +14,14 @@ variable "vcn_nprod_id" {
   default = "ocid1.vcn.oc1.sa-saopaulo-1......."
 }
 
-variable "subnet_public_id" {
+variable "subnet_lb_public_id" {
   default = "ocid1.subnet.oc1.sa-saopaulo-1......."
 }
 
-variable "subnet_private_id" {
+variable "subnet_api_private_id" {
+  default = "ocid1.subnet.oc1.sa-saopaulo-1......."
+}
+
+variable "subnet_workers_private_id" {
   default = "ocid1.subnet.oc1.sa-saopaulo-1......."
 }
